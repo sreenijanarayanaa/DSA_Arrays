@@ -1,0 +1,18 @@
+class Solution {
+    public int maximumProfit(int prices[]) {
+        int i=0;
+        int buy=prices[0],sell=prices[0],profit=0;
+        while(i<prices.length){
+            if(buy>prices[i]){
+                buy=prices[i];
+                sell=0;
+            }
+            else if(sell<prices[i]) {
+                sell=prices[i];                
+            }
+            profit = Math.max(profit,sell-buy);
+            i++;
+        }
+        return profit;
+    }
+}
