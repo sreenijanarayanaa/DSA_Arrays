@@ -1,0 +1,15 @@
+class Solution {
+    boolean twoSum(int arr[], int target) {
+       Map<Integer,Integer> hashmap = new HashMap<>();
+       for(int i:arr){
+           int find = target - i;
+           if(hashmap.containsKey(find)){
+               return true;
+           }
+           else{
+               hashmap.put(i,0);
+           }
+       }
+       return false;
+    }
+}
