@@ -1,0 +1,39 @@
+class Solution {
+    public int findMin(int[] arr) {
+       if(arr[0]<arr[arr.length-1])return arr[0];
+       int l=0,h=arr.length-1,m=0;
+       while(l<h){
+           m=(l+h)/2;
+          if(arr[m]>arr[m+1])return arr[m+1];
+          if(arr[m]<arr[m-1])return arr[m];
+          if(arr[m]<arr[h])
+          h=m;
+          else
+          l=m+1;
+       }
+       return arr[l];
+    }
+}
+-----------------------------------------------------------------
+
+class Solution {
+    public int findMin(int[] arr) {
+        if (arr[0] < arr[arr.length - 1]) {
+            return arr[0]; // The array is already sorted, so the smallest element is the first one.
+        }
+
+        int l = 0, h = arr.length - 1;
+
+        while (l < h) {
+            int m = l + (h - l) / 2;
+
+            if (arr[m] > arr[h]) {
+                l = m + 1; // Minimum lies in the right half.
+            } else {
+                h = m; // Minimum lies in the left half or at `m`.
+            }
+        }
+        
+        return arr[l]; // At the end, `l` will point to the smallest value.
+    }
+}
