@@ -1,0 +1,58 @@
+---------------------------------------using binarysearch------------------------------------------------------
+
+class Solution {
+    public List<List<Integer>> findTriplets(int[] arr) {
+        // Your code here
+        // Map to store indices for each value
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        
+        // Resultant list
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        // Check for all pairs i, j
+        for (int j = 0; j < arr.length; j++) {
+            for (int k = j + 1; k < arr.length; k++) {
+                
+                // Value of third index should be 
+                int val = -1 * (arr[j] + arr[k]);
+                
+                // If such indices exist
+                if(map.containsKey(val)){
+                   for(int i: map.get(val)){
+                       ans.add(Arrays.asList(i,j,k));
+                   }
+                }
+            }
+            
+            // After j'th index is traversed
+            // We can use it as i.
+            map.putIfAbsent(arr[j], new ArrayList<>());
+            map.get(arr[j]).add(j);
+        }
+        
+        return ans;
+    }
+}
+--------------------------------------------using hashmap to find 3rd ele----------------------------------------
+class Solution {
+    public List<List<Integer>> findTriplets(int[] arr) {
+        // Your code here
+        int n = arr.length;
+         List<List<Integer>> list = new ArrayList<>();
+        for(int i=0;i<n-1;i++){
+            HashMap<Integer,Integer> hm = new HashMap<>();
+            for(int j=i+1;j<n;j++){
+                int find = -1*(arr[i]+arr[j]);
+                if(hm.containsKey(find)){
+                
+                int[] ar =  {i,j,hm.get(find)};
+                Arrays.sort(ar);
+                    list.add(Arrays.asList(ar[0],ar[1],ar[2]));
+                }
+                hm.put(arr[j],j);
+            }
+            
+        }
+        return list;
+    }
+}
