@@ -1,0 +1,21 @@
+class Solution {
+    public int longestUniqueSubstr(String s) {
+       int l=0,r=0;
+       if(s.length()<=1)return s.length();
+       boolean[] chars = new boolean[26];
+       int len=0,maxLen=0;
+       while(r<s.length()){
+           
+           while(chars[s.charAt(r)-'a']==true){
+               chars[s.charAt(l)-'a'] = false;
+               l++;
+           }
+          chars[s.charAt(r)-'a']=true;
+           len = r-l+1;
+               maxLen = Math.max(len,maxLen);
+           r++;
+       }
+       
+        return maxLen;
+    }
+}
