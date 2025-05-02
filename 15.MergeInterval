@@ -1,0 +1,53 @@
+class Solution {
+    public List<int[]> mergeOverlap(int[][] arr) {
+        // Code here // Code here
+        List<int[]> list = new ArrayList<int[]>();
+       
+       Arrays.sort(arr, (a1, a2) -> Integer.compare(a1[0], a2[0]));
+        
+        int i=0;
+        while(i<arr.length){
+           int startInterval = arr[i][0];
+           int endInterval = arr[i][1];
+            while(i+1<arr.length && endInterval>=arr[i+1][0]){
+                i++;
+                endInterval = Math.max(endInterval,arr[i][1]);
+            }
+            
+            int[] interval = {startInterval, endInterval};
+            list.add(interval);
+            i++;
+        }
+        return list;
+        
+    }
+}
+
+
+----------------------------------Or-------------------------------------
+
+
+class Solution {
+    public List<int[]> mergeOverlap(int[][] arr) {
+        List<int[]> list = new ArrayList<>();
+        
+        // Sorting the array based on the start time
+        Arrays.sort(arr, (a1, a2) -> Integer.compare(a1[0], a2[0]));
+        
+        int[] currentInterval = arr[0];
+        
+        for (int i = 1; i < arr.length; i++) {
+            if (currentInterval[1] >= arr[i][0]) {
+                // Overlapping intervals: merge them
+                currentInterval[1] = Math.max(currentInterval[1], arr[i][1]);
+            } else {
+                // No overlap: add the previous interval and move to the next one
+                list.add(currentInterval);
+                currentInterval = arr[i];
+            }
+        }
+        
+        list.add(currentInterval); // Adding the last interval
+        return list;
+    }
+}
