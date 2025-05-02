@@ -1,0 +1,21 @@
+ public static List<int[]> findGaps(int[][] arr) {
+        if (arr.length == 0) {
+            return new ArrayList<>();
+        }
+        
+        // Sort intervals by start time
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+        
+        List<int[]> res = new ArrayList<>();
+        for (int i = 1; i < arr.length; i++) {
+            
+            // End of previous and start of current are
+            // are checked and if non-overlapping, then
+            // added to the result
+            if (arr[i - 1][1] < arr[i][0]) {
+                res.add(new int[]{arr[i - 1][1], arr[i][0]});
+            }
+        }
+        return res;
+    }
+    
