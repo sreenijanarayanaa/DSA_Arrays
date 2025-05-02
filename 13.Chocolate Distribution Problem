@@ -1,0 +1,13 @@
+class Solution {
+    public int findMinDiff(ArrayList<Integer> arr, int m) {
+       Collections.sort(arr);
+        int i=0,j=m-1,diff=Integer.MAX_VALUE, minDiff=Integer.MAX_VALUE;
+        while(j<arr.size()){
+           diff= arr.get(j)-arr.get(i);
+           minDiff = Math.min(diff,minDiff);
+           i++;
+           j++;
+        }
+        return minDiff;
+    }
+}
