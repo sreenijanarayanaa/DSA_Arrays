@@ -7,7 +7,7 @@ class Solution {
           if(arr[m]>arr[m+1])return arr[m+1];
           if(arr[m]<arr[m-1])return arr[m];
           if(arr[m]<arr[h])
-          h=m;
+          h=m-1;
           else
           l=m+1;
        }
