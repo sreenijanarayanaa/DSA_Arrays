@@ -1,4 +1,3 @@
-
 -----------Using hashmap---------------------------------
 class Solution {
     boolean twoSum(int arr[], int target) {
